@@ -3,7 +3,8 @@ import ListHeader from "./components/ListHeader";
 import ListItem from "./components/ListItem";
 
 interface Task {
-  // Define your task interface here
+  id: string;
+  task: string;
 }
 
 const App: React.FC = () => {
@@ -15,7 +16,6 @@ const App: React.FC = () => {
       const response = await fetch(`http://localhost:8000/todos/${userEmail}`);
       const json = await response.json();
       setTasks(json);
-      console.log(tasks);
     } catch (err) {
       console.error(err);
     }
@@ -27,9 +27,9 @@ const App: React.FC = () => {
 
   return (
     <div className="app">
-      <ListHeader ListName={"Holiday tick List"} />
+      <ListHeader ListName={"Holiday tick List"} getData={getData} />
       {tasks?.map((task) => (
-        <ListItem key={task.id} task={task} />
+        <ListItem key={task.id} task={task} getData={getData} />
       ))}
     </div>
   );
