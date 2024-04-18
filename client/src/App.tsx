@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ListHeader from "./components/ListHeader";
 import ListItem from "./components/ListItem";
+import Auth from "./components/Auth";
+import { useCookies } from "react-cookie";
 
 interface Task {
   id: string;
@@ -8,12 +10,18 @@ interface Task {
 }
 
 const App: React.FC = () => {
+  const [cookies, setCookie, removeCookie] = useCookies(null);
   const [tasks, setTasks] = useState<Task[] | null>(null);
 
+  const authToken = cookies.AuthToken;
+  const userEmail = cookies.Email;
+
   const getData = async () => {
-    const userEmail = "e.howe@nufc.sa";
+    const userEmail = cookies.Email;
     try {
-      const response = await fetch(`http://localhost:8000/todos/${userEmail}`);
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/todos/${userEmail}`
+      );
       const json = await response.json();
       setTasks(json);
     } catch (err) {
@@ -22,15 +30,24 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    getData();
+    if (authToken) {
+      getData();
+    }
   }, []);
 
   return (
     <div className="app">
-      <ListHeader ListName={"Holiday tick List"} getData={getData} />
-      {tasks?.map((task) => (
-        <ListItem key={task.id} task={task} getData={getData} />
-      ))}
+      {!authToken && <Auth />}
+
+      {authToken && (
+        <>
+          {" "}
+          <ListHeader ListName={"Holiday tick List"} getData={getData} />
+          {tasks?.map((task) => (
+            <ListItem key={task.id} task={task} getData={getData} />
+          ))}
+        </>
+      )}
     </div>
   );
 };

@@ -1,32 +1,59 @@
 import React, { useState } from "react";
+import { useCookies } from "react-cookie";
 
-const Modal = ({ mode, setShowModal, task, getdata }) => {
+const Modal = ({ mode, setShowModal, task, getData }) => {
+  const [cookies, setCookie, removeCookie] = useCookies(null);
   const editMode = mode === "edit" ? true : false;
 
   const [data, setData] = useState({
-    user_email: editMode ? task.user_email : "e.howe@nufc.sa",
+    user_email: editMode ? task.user_email : cookies.Email,
     title: editMode ? task.title : null,
     progress: editMode ? task.progress : "50",
     date: editMode ? "" : "Today",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
     setData((data) => ({ ...data, [name]: value }));
   };
 
-  const postData = async (submission) => {
-    submission.preventDefault();
+  const postData = async (event) => {
+    event.preventDefault();
     try {
-      const response = await fetch(`http://localhost:8000/todos`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/todos`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
       if (response.status === 200) {
         console.log("It Worked");
         setShowModal(false);
-        getdata();
+        getData();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const editData = async (event) => {
+    event.preventDefault();
+    console.log("Attemping to edit data");
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/todos/${task.id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
+      if (response.status === 200) {
+        console.log("edit Worked");
+        setShowModal(false);
+        getData();
       }
     } catch (err) {
       console.error(err);
@@ -62,7 +89,7 @@ const Modal = ({ mode, setShowModal, task, getdata }) => {
           <input
             className="edit"
             type="submit"
-            onClick={editMode ? console.log("You are in edit mode") : postData}
+            onClick={editMode ? editData : postData}
           />
         </form>
       </div>
