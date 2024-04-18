@@ -27,14 +27,15 @@ function ListItem({ task, getData }) {
     <li className="list-item">
       <div className="info-container">
         <TickIcon />
+        <p className="task-title">{task.title}</p>
+        <ProgressBar progress={task.progress} />
       </div>
-      <p>{task.title}</p>
-      <ProgressBar />
+
       <div className="button-container">
         <button className="edit" onClick={() => setShowModal(true)}>
           EDIT
         </button>
-        <button className="edit" onClick={deleteItem}>
+        <button className="delete" onClick={deleteItem}>
           DELETE
         </button>
       </div>
@@ -42,8 +43,8 @@ function ListItem({ task, getData }) {
         <Modal
           mode={"edit"}
           setShowModal={setShowModal}
-          task={task}
           getData={getData}
+          task={task}
         />
       )}
     </li>

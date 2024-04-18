@@ -88,13 +88,32 @@ app.post("/signup", async (req, res) => {
   }
 });
 
-// Login
-// app.post('/login',async (req,res)={
-//   const { email, password } = req.body
-//   try{
-//     console.log('Hello')
-//   }
-//   catch(err){console.error}
-// })
+app.post("/login", async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const users = await pool.query("SELECT * FROM users WHERE email = $1", [
+      email,
+    ]);
+    if (!users.rows.length)
+      return res.jston({ detail: "User does not exist!" });
+    const success = await bcrypt.compare(
+      password,
+      users.rows[0].hashed_password
+    );
+    const token = jwt.sign({ email }, "secret", { expiresIn: "1hr" });
+
+    if (success) {
+      res.jason({ email: users.rows[0].email, token });
+    } else {
+      res.json({ detail: "Login failed" });
+    }
+
+    res.json({ email, token });
+  } catch (err) {
+    console.error;
+    if (err) res.json({ detail: err.detail });
+  }
+});
 
 app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));

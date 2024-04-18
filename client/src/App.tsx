@@ -43,11 +43,13 @@ const App: React.FC = () => {
         <>
           {" "}
           <ListHeader ListName={"Holiday tick List"} getData={getData} />
+          <p>Welcome back {userEmail}</p>
           {tasks?.map((task) => (
             <ListItem key={task.id} task={task} getData={getData} />
           ))}
         </>
       )}
+      <p></p>
     </div>
   );
 };
