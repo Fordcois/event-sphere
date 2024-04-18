@@ -75,7 +75,7 @@ app.post("/signup", async (req, res) => {
 
   try {
     const signUp = await pool.query(
-      "INSERT INTO users (email,hashed_password) VALUES ($1,$2)",
+      `INSERT INTO users (email, hashed_password) VALUES($1, $2)`,
       [email, hashedPassword]
     );
 
@@ -83,20 +83,23 @@ app.post("/signup", async (req, res) => {
 
     res.json({ email, token });
   } catch (err) {
-    console.error;
-    if (err) res.json({ detail: err.detail });
+    console.error(err);
+    if (err) {
+      res.json({ detail: err.detail });
+    }
   }
 });
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-
+  console.log("Backend for Log in reached!", password);
   try {
     const users = await pool.query("SELECT * FROM users WHERE email = $1", [
       email,
     ]);
-    if (!users.rows.length)
-      return res.jston({ detail: "User does not exist!" });
+
+    if (!users.rows.length) return res.json({ detail: "User does not exist!" });
+
     const success = await bcrypt.compare(
       password,
       users.rows[0].hashed_password
@@ -104,15 +107,13 @@ app.post("/login", async (req, res) => {
     const token = jwt.sign({ email }, "secret", { expiresIn: "1hr" });
 
     if (success) {
-      res.jason({ email: users.rows[0].email, token });
+      console.log("log in sucess", users.rows[0].email);
+      res.json({ email: users.rows[0].email, token });
     } else {
       res.json({ detail: "Login failed" });
     }
-
-    res.json({ email, token });
   } catch (err) {
-    console.error;
-    if (err) res.json({ detail: err.detail });
+    console.error(err);
   }
 });
 

@@ -4,23 +4,22 @@ import { useCookies } from "react-cookie";
 function Auth() {
   const [cookies, setCookie, removeCookie] = useCookies(null);
   const [isLogin, setisLogin] = useState(true);
-  const [error, setError] = useState("No Errors");
+  const [error, setError] = useState("");
 
   const [email, setEmail] = useState(null);
   const [password, setpassword] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState(null);
 
-  console.log(cookies);
-
   const viewLogin = (status) => {
-    setError("No Errors");
+    setError("");
     setisLogin(status);
   };
 
-  const handleSubmit = async (event, endpoint) => {
-    event.preventDefault();
+  const handleSubmit = async (e, endpoint) => {
+    e.preventDefault();
+    console.log(password);
     if (!isLogin && password !== confirmPassword) {
-      setError("Passwords do not match");
+      setError("Make sure passwords match!");
       return;
     }
 
@@ -32,12 +31,15 @@ function Auth() {
         body: JSON.stringify({ email, password }),
       }
     );
+
     const data = await response.json();
+
     if (data.detail) {
       setError(data.detail);
     } else {
       setCookie("Email", data.email);
       setCookie("AuthToken", data.token);
+
       window.location.reload();
     }
   };
@@ -54,14 +56,14 @@ function Auth() {
           />
           <input
             type="password"
-            placeholder="confirm password"
-            onChange={(event) => setConfirmPassword(event.target.value)}
+            placeholder="password"
+            onChange={(event) => setpassword(event.target.value)}
           />
           {!isLogin && (
             <input
               type="password"
               placeholder="confirm password"
-              onChange={(event) => setpassword(event.target.value)}
+              onChange={(event) => setConfirmPassword(event.target.value)}
             />
           )}
           <input
