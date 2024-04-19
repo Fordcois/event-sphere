@@ -1,3 +1,50 @@
+:root {
+  --ESBlack: #000000;
+  --ESBlue: #14213d;
+  --ESBlueLight: #233251;
+  --ESOrange: #fca311;
+  --ESGray: #e5e5e5;
+  --ESWhite: #ffffff;
+}
+/* EventSphere Below */
+
+/* Navigation Bar */
+
+.top-nav-bar {
+  width: 100vw;
+  height: 75px;
+  background-color: var(--ESBlue);
+  color: var(--ESOrange);
+  display: flex;
+  justify-content: space-between;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+}
+/* Media query for Phone */
+@media (max-width: 767px) {
+  .top-nav-bar {
+    background-color: red; /* This will override the background color at max-width 767px */
+  }
+}
+
+.nav-bar-links-container {
+  display: flex;
+  padding-right: 10px;
+  justify-content: space-between;
+}
+
+.nav-bar-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+}
+
+.nav-bar-link:hover {
+  background-color: var(--ESBlueLight);
+}
+
+/* Old CSS BELOW */
+
 body {
   margin: 0;
   padding: 0;
