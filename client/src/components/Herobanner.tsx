@@ -11,7 +11,7 @@ const HeroImage: React.FC = () => {
           backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 60%, rgba(20, 33, 61, .8)), url(${MainImage})`,
         }}
       >
-        <p className="banner-text">LET THE PERFECT NIGHT FIND YOU</p>
+        <p className="banner-text">Let the party come to you</p>
         <p className="smaller-banner-text">
           Get fast,personalised responses from available venues that match what
           you're looking for

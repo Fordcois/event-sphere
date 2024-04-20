@@ -55,7 +55,6 @@
 }
 
 .homepage-image-banner {
-  /* Background image defined inline */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -63,7 +62,7 @@
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-position: left;
-  background-size: 100vw;
+  background-size: cover;
   padding: 2%;
 }
 
@@ -71,25 +70,32 @@
   font-family: var(--BannerFont);
   font-weight: 600;
   font-size: 3rem;
-  color: azure;
+  text-align: center;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0px;
 }
 
 .smaller-banner-text {
   color: azure;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.9);
+  padding-bottom: 7%;
 }
 
 .Button {
   background-color: var(--ESOrange);
-  padding: 0px 50px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  padding: 0px;
 }
 .Button p {
   font-family: var(--BannerFont);
   color: #233251;
+  margin: 5px 20px;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-transform: uppercase;
 }
 
