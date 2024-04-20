@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@100;200;300;400;500;600;700&display=swap");
 :root {
   --ESBlack: #000000;
   --ESBlue: #14213d;
@@ -5,6 +6,7 @@
   --ESOrange: #fca311;
   --ESGray: #e5e5e5;
   --ESWhite: #ffffff;
+  --BannerFont: "IBM Plex Sans Devanagari", sans-serif;
 }
 /* EventSphere Below */
 
@@ -13,8 +15,8 @@
 .top-nav-bar {
   width: 100vw;
   height: 75px;
-  background-color: var(--ESBlue);
-  color: var(--ESOrange);
+  background-color: var(--ESwhite);
+  color: var(--ESBlue);
   display: flex;
   justify-content: space-between;
   box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 1px;
@@ -41,6 +43,54 @@
 
 .nav-bar-link:hover {
   background-color: var(--ESBlueLight);
+  transition: 2s;
+}
+
+.lower-nav-bar {
+  display: flex;
+  background-color: var(--ESBlue);
+  color: var(--ESOrange);
+  justify-content: space-around;
+  padding: 2px 0px;
+}
+
+.homepage-image-banner {
+  /* Background image defined inline */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position: left;
+  background-size: 100vw;
+  padding: 2%;
+}
+
+.banner-text {
+  font-family: var(--BannerFont);
+  font-weight: 600;
+  font-size: 3rem;
+  color: azure;
+}
+
+.smaller-banner-text {
+  color: azure;
+}
+
+.Button {
+  background-color: var(--ESOrange);
+  padding: 0px 50px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.Button p {
+  font-family: var(--BannerFont);
+  color: #233251;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
 
 /* Old CSS BELOW */
@@ -48,7 +98,6 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(233, 241, 249);
   display: flex;
   justify-content: center;
   font-family: "Trebuchet MS", Arial, sans-serif;

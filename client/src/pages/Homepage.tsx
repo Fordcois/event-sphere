@@ -1,7 +1,10 @@
 import React from "react";
 import TopNavBar from "../components/TopNavBar";
+import LowerNavBar from "../components/LowerNavBar";
+import HeroImage from "../components/Herobanner";
 
 const Homepage: React.FC = () => {
+  const mobileDisplayMode: boolean = window.innerWidth < 767;
   // Define any state variables if needed using useState
   // const [stateVariable, setStateVariable] = useState<YourType>(initialValue);
 
@@ -14,27 +17,19 @@ const Homepage: React.FC = () => {
     <div>
       {/* Render the page content here */}
       <TopNavBar />
-      <h1>Welcome to the page!</h1>
-      <p>
-        SMALLER BAR - All Venues Conferences Corporate Events Parties Meetings
-        Private Dining Studios Christmas
-      </p>
-
-      <p>
-        HERO IMAGE BACKGROUND
-        <br /> Big title on BG
-        <br />
-        Smaller Image
-        <br />
-        Call to Action
-      </p>
-
+      <LowerNavBar />
+      <HeroImage />
       <p>Standout Venues to book in [Random place]</p>
-      <span></span>
-      <span></span>
-      <span></span>
-
-      {/* Add more content, components, or UI elements as needed */}
+      Current Display:{mobileDisplayMode ? "Mobile Display" : "Desktop Display"}
+      <br />
+      Photo by{" "}
+      <a href="https://unsplash.com/@alelmes?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
+        Al Elmes
+      </a>{" "}
+      on{" "}
+      <a href="https://unsplash.com/photos/people-raising-wine-glass-in-selective-focus-photography-ULHxWq8reao?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">
+        Unsplash
+      </a>
     </div>
   );
 };

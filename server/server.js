@@ -92,7 +92,6 @@ app.post("/signup", async (req, res) => {
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log("Backend for Log in reached!", password);
   try {
     const users = await pool.query("SELECT * FROM users WHERE email = $1", [
       email,
