@@ -1,15 +1,19 @@
 const Pool = require("pg").Pool;
 require("dotenv").config();
 
-const pool = new Pool({
-  user: process.env.USERNAME,
-  password: process.env.PASSWORD,
-  host: process.env.HOST,
-  port: process.env.DBPORT,
-  database: "ESDB",
-  ssl: {
-    rejectUnauthorized: false,
-  },
-});
+const isAWS = process.env.ONLINE === 'AWS-RDS';
+
+const dbConfig = {
+  user: isAWS ? process.env.LIVEUSERNAME : process.env.USERNAME,
+  password: isAWS ? process.env.LIVEPASSWORD : process.env.PASSWORD,
+  host: isAWS ? process.env.LIVEHOST : process.env.HOST,
+  port: isAWS ? process.env.LIVEDBPORT : process.env.DBPORT,
+  database: isAWS ? process.env.LIVEDBNAME : process.env.DBNAME,
+  ...(isAWS && {ssl: {rejectUnauthorized: false,},}),
+};
+
+const pool = new Pool(dbConfig);
+
+console.log(isAWS ? 'Connecting to AWS-CONNECT' : 'Connecting to LOCALHOST');
 
 module.exports = pool;
