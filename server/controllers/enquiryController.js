@@ -1,3 +1,5 @@
+const pool = require("../db");
+
 const EnquiryController = {
 
     Create: async (req,res) => {
@@ -9,7 +11,7 @@ const EnquiryController = {
     const title = 'Trial Enquiry';
     const progress = 50;
     const date = 'Today';
-    const id = uuidv4();
+    const id = 9999999;
     try {
       const newToDo = await pool.query(
         "INSERT INTO todos (id, user_email, title, progress, date) VALUES ($1, $2, $3, $4, $5)",

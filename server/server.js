@@ -10,13 +10,7 @@ const jwt = require("jsonwebtoken");
 // Import Routers
 const enquiryRouter = require("./routes/enquiryRoutes")
 
-
-// Allow all origins for development purposes only (remove for production)
-const corsOptions = {
-  origin: process.env.NODE_ENV === 'development' ? '*' : 'http://localhost:3000'
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 
