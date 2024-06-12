@@ -1,46 +1,76 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# EventSphere
 
-## Available Scripts
+🎉✨ Welcome to EventSphere! ✨🎉
 
-In the project directory, you can run:
+Ready to transform your night out? Whether you’re suiting up for a corporate affair 💼, challenging your friends to a game night 🎯, or just want to dance till dawn 💃! Just tell us what you're in the mood for, who is going, and how much you want to spend and we’ll do the rest. Submit your event and watch as the perfect venues come rolling in to make your night unforgettable!
 
-### `npm start`
+## 🚀 How It Works
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+1) Submit an Inquiry: Use our event wizard to specify your event type and preferences.
+2) Venue Matching: Venues that match your criteria will reach out with their offers.
+3) Choose Your Venue: Review the responses and pick the perfect spot for your night.
+4) Enjoy Your Night: Get ready for a night to remember!
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🛠️ Technology Stack
 
-### `npm test`
+Frontend: TypeScript with React
+Backend: Express and Node.js
+Database: PostgreSQL
+Security: Passwords are securely hashed using bcrypt
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+To use EventSphere locally, you’ll need to set up the client and server. Follow these steps to get started:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Clone the Repository
 
-### `npm run eject`
+```
+git clone https://github.com/Fordcois/event-sphere.git
+cd eventsphere
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Setup the Database
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Ensure PostgreSQL is running and create a new database named eventsphere.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+`createdb eventsphere`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+Install Server Dependencies
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+cd server
+npm install
+```
+
+Install Client Dependencies
+
+```
+cd ../client
+npm install
+```
+
+Running the Application
+
+Start the Server
+
+```
+cd server
+npm start
+```
+
+The server will start on http://localhost:8000.
+
+Start the Client
+
+```
+cd client
+npm start
+```
+
+The client will be available at http://localhost:3000.
