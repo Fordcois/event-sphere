@@ -1,6 +1,4 @@
-// const { email, firstName, lastName, password } = req.body;
 import React, { useState } from "react";
-
 
 const SignUp: React.FC = () => {
 
@@ -36,15 +34,14 @@ const SignUp: React.FC = () => {
       };
 
     return (
+
     <div>
     <form onSubmit={RegisterUser}>
-      {/* Email Field */}
       <label htmlFor="email">Email</label>
       <input type="email" id="email" name="email" value={newUserData.email} onChange={handleChange}/>
       
       <br/>
       
-      {/* First Name Field */}
       <label htmlFor="firstName">First Name</label>
       <input type="text" id="firstName" name="firstName" value={newUserData.firstName} onChange={handleChange}/>
       
