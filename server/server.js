@@ -9,6 +9,7 @@ const jwt = require("jsonwebtoken");
 
 // Import Routers
 const enquiryRouter = require("./routes/enquiryRoutes")
+const userRouter = require ("./routes/userRoutes")
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +17,7 @@ app.use(express.json());
 
 // Establish our Routes
 app.use("/enquiry",enquiryRouter);
-
+app.use("/users",userRouter)
 
   
 

@@ -4,6 +4,7 @@ import LowerNavBar from "../components/LowerNavBar";
 import HeroImage from "../components/Herobanner";
 import Footer from "../components/Footer";
 import TrialComponent from "../components/trial";
+import SignUp from "../components/SignUp";
 
 const Homepage: React.FC = () => {
   const mobileDisplayMode: boolean = window.innerWidth < 767;
@@ -24,7 +25,7 @@ const Homepage: React.FC = () => {
       <p>Standout Venues to book in [Random place]</p>
       Current Display:{mobileDisplayMode ? "Mobile Display" : "Desktop Display"}
       <br />
-      <TrialComponent/>
+      <SignUp/>
       <Footer />
     </div>
   );
