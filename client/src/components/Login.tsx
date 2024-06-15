@@ -42,11 +42,11 @@ const Login: React.FC = () => {
             alert(data.detail);
           } else {
             // On successful login, set cookies and reload the page
-            setCookie("Email", data.email, { path: '/' }); // Add options as needed
+            console.log(data)
+            setCookie("userId", data.userID, { path: '/' }); // Add options as needed
             setCookie("AuthToken", data.token, { path: '/' }); // Add options as needed
-      
             // Redirect to a different page or reload the current page
-            window.location.reload(); // Consider redirecting to a specific page instead
+            // window.location.reload(); // Consider redirecting to a specific page instead
           }
         } catch (err) {
           console.error('Fetch error:', err);

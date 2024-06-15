@@ -4,6 +4,8 @@ import LowerNavBar from "../components/LowerNavBar";
 import HeroImage from "../components/Herobanner";
 import Login from "../components/Login";
 import Footer from "../components/Footer";
+import CookiesInfo from "../utility/cookies";
+import LogOut from "../components/LogOut";
 
 const Homepage: React.FC = () => {
   const mobileDisplayMode: boolean = window.innerWidth < 767;
@@ -25,6 +27,8 @@ const Homepage: React.FC = () => {
       Current Display:{mobileDisplayMode ? "Mobile Display" : "Desktop Display"}
       <br />
       <Login/>
+      <LogOut/>
+      <CookiesInfo/>
       <Footer />
     </div>
   );

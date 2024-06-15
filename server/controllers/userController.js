@@ -28,25 +28,18 @@ const UserController = {
   Login: async (req, res) => {
     const { email, password } = req.body;
     const upperEmail = email.toUpperCase();
-
-    console.log("Email:", upperEmail);
-    console.log("Password:", password);
-
     try {
       const users = await pool.query("SELECT * FROM users WHERE email = $1", [upperEmail]);
-
       if (!users.rows.length) {
-        console.log('User Does not exist')
         return res.status(404).json({ detail: "User does not exist!" });
       }
-
       const user = users.rows[0];
       const success = await bcrypt.compare(password, user.hashed_password);
 
       if (success) {
         const token = jwt.sign({ email: user.email }, "secret", { expiresIn: "1h" });
         console.log("Log in success:", user.email);
-        res.json({ user: user.user_id, token });
+        res.json({ userID: user.user_id, token });
       } else {res.status(401).json({ detail: "Login failed" });}
     } catch (err) {
       console.error(err);
