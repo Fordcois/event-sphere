@@ -4,13 +4,13 @@ import "../index.css";
 const LowerNavBar: React.FC = () => {
   return (
     <div className="lower-nav-bar">
-      <span className="lower-nav-bar-element">Conferences</span>
+      <a href='/' className="lower-nav-bar-element">Home</a>
+      <a href='/newevent' className="lower-nav-bar-element">New Event</a>
       <span className="lower-nav-bar-element">Corporate Events</span>
       <span className="lower-nav-bar-element">Parties</span>
       <span className="lower-nav-bar-element">Meetings</span>
       <span className="lower-nav-bar-element">Private Dining</span>
-      <span className="lower-nav-bar-element">Studios</span>
-      <span className="lower-nav-bar-element">Christmas</span>
+
     </div>
   );
 };

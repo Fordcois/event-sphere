@@ -59,6 +59,10 @@ const NewEventWizard: React.FC = () => {
     setEnquiry(updatedEnquiry);
   };
 
+  const submitEnquiry =()=>{
+    console.log('Let us submit this enquiry')
+  }
+
   return (
     <div style={{ paddingLeft: "10px" }}>
       <br />
