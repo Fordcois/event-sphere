@@ -3,24 +3,63 @@ const { v4: uuidv4 } = require("uuid");
 
 const EnquiryController = {
 
-  // TODO Explore if UUID is built into Postgres? If So can be removed from User Controller
   Create: async (req, res) => {
-    const {
-        userID, eventName, Function, corporate, StandingArrang,
-        GuestsExpected, Date, startTime, endTime, Flexible,
-        venueStyle, AdditionalNotes
+    const event_id = uuidv4();
+    const { userID, 
+            eventName, 
+            eventType,
+            corporateEvent,
+            seatingArrang,
+            expectedGuests,
+            date,
+            startTime,
+            endTime,
+            flexible,
+            styleFormal,
+            styleCasual,
+            styleModern,
+            styleLuxury,
+            styleTraditional,
+            styleIndustrial,
+            styleSocial,
+            styleLively,
+            styleQuiet,
+            styleProfessional,
+            additionalNotes
     } = req.body;
+    console.log(eventName)
+    console.log(userID)
 
     try {
         const newEnquiry = await pool.query(
             `INSERT INTO enquiries (
-                event_id, user_id, event_name, function, corporate,
-                standing_arrangement, guests_expected, event_date,
-                start_time, end_time, flexible, venue_style, additional_notes
+            "Eventid","userid","eventName","eventType","corporateEvent","SeatingArrangment","ExpectedGuests","eventDate","startTime","endTime","flexible","styleCasual","styleModern","styleLuxury","styleTraditional","styleIndustrial","styleSocial","styleLively","styleQuiet","styleProfessional","styleFormal","Notes"
             ) VALUES (
-                uuid_generate_v4(), $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12
-            ) RETURNING *`,
-            [userID, eventName, Function, corporate, StandingArrang, GuestsExpected, Date, startTime, endTime, Flexible, venueStyle, AdditionalNotes]
+            $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13,$14, $15, $16, $17, $18, $19, $20, $21, $22
+            ) 
+                RETURNING *`,
+                [event_id,
+                    userID, 
+                    eventName, 
+                    eventType,
+                    corporateEvent,
+                    seatingArrang,
+                    expectedGuests,
+                    date,
+                    startTime,
+                    endTime,
+                    flexible,
+                    styleCasual,
+                    styleModern,
+                    styleLuxury,
+                    styleTraditional,
+                    styleIndustrial,
+                    styleSocial,
+                    styleLively,
+                    styleQuiet,
+                    styleProfessional,
+                    styleFormal,
+                    additionalNotes]
         );
 
         res.json(newEnquiry.rows[0]);

@@ -7,6 +7,7 @@ const NewEvent: React.FC = () => {
   return (
     <div style={{ color: "lightgray" }}>
       <TopNavBar />
+
       <LowerNavBar />
       <NewEventWizard />
     </div>
