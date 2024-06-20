@@ -6,6 +6,7 @@ import SecondPage from "./pages/SecondPage";
 import NotFound from "./pages/NotFoundPage";
 import NewEvent from "./pages/NewEvent";
 import SignUp from "./components/SignUp";
+import VenueRegister from "./components/RegisterVenue";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/NewEvent" element={<NewEvent />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/Signup" element={<Auth />} />
+        <Route path='/venueregister' element={<VenueRegister/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -1,25 +1,10 @@
 import React, { useState } from "react";
 import { useCookies } from "react-cookie";
 
-// Define the Enquiry interface at the top
-interface Enquiry {
-  eventName: string;
-  Function: Array<string>;
-  corporate:string;
-  StandingArrang:string;
-  GuestsExpected:number;
-  Date:Date ;
-  startTime: string;
-  endTime: string;
-  Flexible: string;
-  venueStyle: Array<string>;
-  AdditionalNotes: string;
-}
-
 const NewEventWizard: React.FC = () => {
 
   const [cookies] = useCookies(['user_id']);
- 
+
   // Fields
   const [eventName, setEventName] = useState<string>("");
   const [eventType, setEventType] = useState<string>("");

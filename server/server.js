@@ -10,6 +10,7 @@ const jwt = require("jsonwebtoken");
 // Import Routers
 const enquiryRouter = require("./routes/enquiryRoutes")
 const userRouter = require ("./routes/userRoutes")
+const venueRouter = require ("./routes/venueRoutes")
 
 app.use(cors());
 app.use(express.json());
@@ -17,9 +18,8 @@ app.use(express.json());
 
 // Establish our Routes
 app.use("/enquiry",enquiryRouter);
-app.use("/users",userRouter)
-
-  
+app.use("/users",userRouter);
+app.use("/venue",venueRouter);
 
   
   // error handler
@@ -27,29 +27,12 @@ app.use("/users",userRouter)
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get("env") === "development" ? err : {};
-  
     // respond with details of the error
     res.status(err.status || 500).json({message: 'server error'})
   });
   
-app.listen(PORT, () => 
-  {console.log(`Server running on PORT ${PORT}`)}
-  );
+app.listen(PORT, () => {console.log(`Server running on PORT ${PORT}`)} );
 
-
-// //get all todos
-// app.get("/todos/:userEmail", async (req, res) => {
-//   const { userEmail } = req.params;
-//   try {
-//     const todos = await pool.query(
-//       "SELECT * FROM todos WHERE user_email = $1",
-//       [userEmail]
-//     );
-//     res.json(todos.rows);
-//   } catch (err) {
-//     console.error(error);
-//   }
-// });
 
 // // Create a new todo
 // app.post("/todos", async (req, res) => {
