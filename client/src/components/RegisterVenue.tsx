@@ -23,6 +23,7 @@ const VenueRegister: React.FC = () => {
     const [styleQuiet, setStyleQuiet] = useState(false);
     const [styleProfessional, setStyleProfessional] = useState(false);
     const [styleModern, setStyleModern] = useState(false);
+    const [password, setpassword] = useState("");
 
 
 
@@ -56,7 +57,9 @@ const VenueRegister: React.FC = () => {
                 styleLively: styleLively,
                 styleQuiet: styleQuiet,
                 styleProfessional: styleProfessional,
-                styleModern: styleModern})
+                styleModern: styleModern,
+                password:password
+            })
             }
         );
         if (response.status === 200) {
@@ -80,6 +83,9 @@ const VenueRegister: React.FC = () => {
         <br/>
         Contact Name
         <input type='text' placeholder="Contact Name" name="Contact Name" id="Contact Name" value={contactName} onChange={(event) => setcontactName(event.target.value)} />
+        <br/>
+        Password
+        <input type='password' placeholder="Password" name="Password" id="Password" value={password} onChange={(event) => setpassword(event.target.value)} />
         <br/>
         Accepts Meeting?
         <label htmlFor="Accepts Meeting">Meeting  </label>
