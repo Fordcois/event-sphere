@@ -6,7 +6,7 @@ const bcrypt = require("bcrypt");
 const venueController = {
   // Create new Venue
   Create: async (req, res) => {
-    console.log('Backend Venue Controller Reached')
+    console.log('Backend Venue Controller - Create Reached')
     const id = uuidv4();
     const {venueName,location,contactName,contactEmail,acceptsMeeting,acceptsParty,acceptsDining,acceptsWedding,acceptsNetworking,acceptsConference,maxCapacity,styleFormal,styleCasual,styleModern,styleLuxury,styleTraditional,styleIndustrial,styleSocial,styleLively,styleQuiet,styleProfessional,password} = req.body;
     const salt = bcrypt.genSaltSync(10);
@@ -23,6 +23,22 @@ const venueController = {
       res.status(500).json({ error: "Internal Server Error" });
     }
   },
+  FindByID: async (req, res) => {
+    console.log('Backend Venue Controller - FindByID Reached');
+    
+    const { id } = req.params;
+    console.log(id)
+    try {
+      const result = await pool.query(
+        `SELECT * FROM enquiries WHERE "Eventid" = $1`, [id]
+      )
+      
+      res.json(result.rows);
+    } catch (error) {
+      console.error('Error executing query', error);
+      res.status(500).send('An error occurred while fetching the enquiry');
+    }
+  }
 };
 
 module.exports = venueController;

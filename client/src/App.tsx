@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFoundPage";
 import NewEvent from "./pages/NewEvent";
 import SignUp from "./components/SignUp";
 import VenueRegister from "./components/RegisterVenue";
+import SingleEnquiryPage from "./pages/SingleEnquiryPage";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/register" element={<SignUp />} />
         <Route path="/Signup" element={<Auth />} />
         <Route path='/venueregister' element={<VenueRegister/>}/>
+        <Route path='/enquiry/:enquiry_id' element={<SingleEnquiryPage/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
