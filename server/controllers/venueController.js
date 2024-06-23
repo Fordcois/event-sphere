@@ -30,8 +30,11 @@ const venueController = {
     console.log(id)
     try {
       const result = await pool.query(
-        `SELECT * FROM enquiries WHERE "Eventid" = $1`, [id]
-      )
+        `SELECT enquiries.*, users.first_name, users.last_name, users.email
+         FROM enquiries
+         INNER JOIN users ON enquiries.userid = users.user_id
+         WHERE enquiries."Eventid" = $1;`, [id]
+      );
       
       res.json(result.rows);
     } catch (error) {

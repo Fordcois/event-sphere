@@ -9,6 +9,9 @@ const SingleEnquiryPage: React.FC = () => {
 
   interface Enquiry {
     id: string;
+    first_name:string;
+    last_name:string;
+    email:string;
     eventName: string;
     eventType: string;
     corporateEvent:boolean;
@@ -46,8 +49,9 @@ const SingleEnquiryPage: React.FC = () => {
           );
           if (response.status === 200) {
             const result = await response.json();
+            console.log(result)
             setEnquiry(result[0])
-            console.log(enquiry)
+      
           } else {
             console.log("Fetch failed with status:", response.status);
           }
@@ -68,6 +72,11 @@ const SingleEnquiryPage: React.FC = () => {
         <div>
 
         <h1>Enquiry {params.enquiry_id}</h1>
+
+        <b>Name: </b>{enquiry.first_name && enquiry.last_name && `${enquiry.first_name} ${enquiry.last_name}`}
+        <br/>
+        <b>Email: </b>{enquiry.email && enquiry.email}
+        <br/>
 
         <b>Event Name: </b>{enquiry.eventName && enquiry.eventName} 
         <br/>
@@ -98,6 +107,7 @@ const SingleEnquiryPage: React.FC = () => {
         {enquiry.styleQuiet && 'Quiet '}
         {enquiry.styleSocial && 'Social '}
         {enquiry.styleTraditional && 'Traditional '}
+
         <br/>
         <b>Additional Note:</b><br/>{enquiry.Notes && enquiry.Notes}
         
