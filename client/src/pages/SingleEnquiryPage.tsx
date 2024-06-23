@@ -6,8 +6,33 @@ import LowerNavBar from "../components/LowerNavBar";
 
 
 const SingleEnquiryPage: React.FC = () => {
-  const params= useParams()
-  const [enquiry,setEnquiry] = useState(null)
+
+  interface Enquiry {
+    id: string;
+    eventName: string;
+    eventType: string;
+    corporateEvent:boolean;
+    eventDate:Date;
+    startTime:string;
+    endTime:string;
+    flexible:boolean;
+    SeatingArrangment:string;
+    ExpectedGuests:number;
+    styleCasual:boolean;
+    styleFormal:boolean;
+    styleIndustrial:boolean; 
+    styleLively:boolean;
+    styleLuxury:boolean;
+    styleModern:boolean; 
+    styleProfessional:boolean; 
+    styleQuiet:boolean; 
+    styleSocial:boolean; 
+    styleTraditional:boolean; 
+    Notes:string
+  }
+
+  const params= useParams<{ enquiry_id: string }>()
+  const [enquiry, setEnquiry] = useState<Enquiry | null>(null);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -21,7 +46,8 @@ const SingleEnquiryPage: React.FC = () => {
           );
           if (response.status === 200) {
             const result = await response.json();
-            console.log(result[0])
+            setEnquiry(result[0])
+            console.log(enquiry)
           } else {
             console.log("Fetch failed with status:", response.status);
           }
@@ -38,10 +64,46 @@ const SingleEnquiryPage: React.FC = () => {
     <div>
       <TopNavBar/>
       <LowerNavBar/>
-      {/* Render the page content here */}
-      <h1>Enquiry {params.enquiry_id}</h1>
-      
+      {enquiry && 
+        <div>
 
+        <h1>Enquiry {params.enquiry_id}</h1>
+
+        <b>Event Name: </b>{enquiry.eventName && enquiry.eventName} 
+        <br/>
+        <b>Event Type: </b>{enquiry.eventType && enquiry.eventType} 
+        <br/>
+        <b>Corporate Event:</b>{enquiry.corporateEvent.toString()} 
+        <br/>
+        <b>Date:</b>{enquiry.eventDate && enquiry.eventDate.toString()} 
+        <br/>
+        <b>Start Time:</b>{enquiry.startTime && enquiry.startTime} 
+        <br/>
+        <b>End Time:</b>{enquiry.endTime && enquiry.endTime}
+        <br/>
+        <b>Flexible on Date?:</b>{enquiry.flexible.toString()} 
+        <br/>
+        <b>Seating:</b>{enquiry.SeatingArrangment && enquiry.SeatingArrangment}
+        <br/>
+        <b>Expected Guests:</b>{enquiry.ExpectedGuests && enquiry.ExpectedGuests}
+        <br/>
+        <b>Styles:</b><br/>
+        {enquiry.styleCasual && 'Causal '}
+        {enquiry.styleFormal && 'Formal '}
+        {enquiry.styleIndustrial && 'Industrial '}
+        {enquiry.styleLively && 'Lively '}
+        {enquiry.styleLuxury && 'Luxury '}
+        {enquiry.styleModern && 'Modern '}
+        {enquiry.styleProfessional && 'Professional '}
+        {enquiry.styleQuiet && 'Quiet '}
+        {enquiry.styleSocial && 'Social '}
+        {enquiry.styleTraditional && 'Traditional '}
+        <br/>
+        <b>Additional Note:</b><br/>{enquiry.Notes && enquiry.Notes}
+        
+        
+      
+      </div>}
       {/* Add more content, components, or UI elements as needed */}
     </div>
   );
