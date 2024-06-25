@@ -23,18 +23,36 @@ const EnquiryController = {
         res.status(500).send('Server error');
     }
 },
+  FindByID: async (req, res) => {
+    console.log('Backend Venue Controller - FindByID Reached');
+    
+    const { id } = req.params;
+    console.log(id)
+    try {
+      const result = await pool.query(
+        `SELECT enquiries.*, users.first_name, users.last_name, users.email
+         FROM enquiries
+         INNER JOIN users ON enquiries.userid = users.user_id
+         WHERE enquiries."Eventid" = $1;`, [id]
+      );
+      
+      res.json(result.rows);
+    } catch (error) {
+      console.error('Error executing query', error);
+      res.status(500).send('An error occurred while fetching the enquiry');
+    }
+  },
 FindAllByUserID: async(req,res) => {
     const { user_id } = req.params;
     console.log('Enquiry - Find By USER ID Reached')
-    console.log(user_id)
- 
+
     try {
       const result = await pool.query(
         `SELECT *
          FROM enquiries
          WHERE userid = $1;`, [user_id]
       );
-      
+
       res.json(result.rows);
     } catch (error) {
       console.error('Error executing query', error);

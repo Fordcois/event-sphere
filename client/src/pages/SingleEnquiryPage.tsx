@@ -41,7 +41,7 @@ const SingleEnquiryPage: React.FC = () => {
       const fetchData = async () => {
         try {
           const response = await fetch(
-            `${process.env.REACT_APP_SERVER_URL}/venue/findbyid/${params.enquiry_id}`,
+            `${process.env.REACT_APP_SERVER_URL}/enquiry/findbyid/${params.enquiry_id}`,
             {
               method: "GET",
               headers: { "Content-Type": "application/json" }
