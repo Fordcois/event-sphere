@@ -9,6 +9,7 @@ import SignUp from "./components/SignUp";
 import VenueRegister from "./components/RegisterVenue";
 import SingleEnquiryPage from "./pages/SingleEnquiryPage";
 import UsersEnquiriesPage from "./pages/UsersEnquiriesPage";
+import SendEnquiryEmail from "./functions/SendEmail";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path='/venueregister' element={<VenueRegister/>}/>
         <Route path='/enquiry/:enquiry_id' element={<SingleEnquiryPage/>}/>
         <Route path='/user/:user_id' element={<UsersEnquiriesPage/>}/>
+        <Route path='/sendEmail' element={<SendEnquiryEmail/>}/>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
