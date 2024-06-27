@@ -20,6 +20,20 @@ const venueController = {
       console.error(err);
       res.status(500).json({ error: "Internal Server Error" });
     }
+  },
+  FilterByStyle: async (req, res) => {
+    console.log('Backend Venue Controller - FilterByStyle Reached')
+    const { style } = req.body; 
+    const allowedColumns = ['style_casual','style_formal','style_industrial','style_lively','style_luxury','style_modern','style_professional','style_quiet','style_social','style_traditional'];
+    try {
+      if (!allowedColumns.includes(style)) 
+          {throw new Error('Invalid column name');}
+      const result = await pool.query(`SELECT * FROM venues WHERE ${style} = TRUE;`);
+      res.json(result.rows);
+    } catch (error) {
+      console.error('Error executing query', error);
+      res.status(500).send('An error occurred while fetching the enquiry');
+    }
   }
 };
 

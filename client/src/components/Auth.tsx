@@ -24,7 +24,7 @@ function Auth() {
     }
 
     const response = await fetch(
-      `${process.env.REACT_APP_SERVER_URL}/${endpoint}`,
+      `${process.env.REACT_APP_SERVER_URL}/venue/styles`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

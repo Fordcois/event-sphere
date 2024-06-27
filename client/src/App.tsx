@@ -10,6 +10,8 @@ import VenueRegister from "./components/RegisterVenue";
 import SingleEnquiryPage from "./pages/SingleEnquiryPage";
 import UsersEnquiriesPage from "./pages/UsersEnquiriesPage";
 import SendEnquiryEmail from "./functions/SendEmail";
+import ResultingVenues from "./pages/resultspage";
+import Workshop from "./pages/workshop";
 
 const App = () => {
   return (
@@ -24,6 +26,8 @@ const App = () => {
         <Route path='/enquiry/:enquiry_id' element={<SingleEnquiryPage/>}/>
         <Route path='/user/:user_id' element={<UsersEnquiriesPage/>}/>
         <Route path='/sendEmail' element={<SendEnquiryEmail/>}/>
+        <Route path='/validvenues' element={<ResultingVenues/>} />
+        <Route path='/workshop' element={<Workshop/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
