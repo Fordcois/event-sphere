@@ -34,6 +34,16 @@ const venueController = {
       console.error('Error executing query', error);
       res.status(500).send('An error occurred while fetching the enquiry');
     }
+  },
+  FilterByEnquiry: async (req, res) => {
+    console.log('Backend Venue Controller - FilterByEnquiry Reached')
+    try {
+      const result = await pool.query(`SELECT * FROM venues`);
+      res.json(result.rows);
+    } catch (error) {
+      console.error('Error executing query', error);
+      res.status(500).send('An error occurred while fetching the enquiry');
+    }
   }
 };
 
