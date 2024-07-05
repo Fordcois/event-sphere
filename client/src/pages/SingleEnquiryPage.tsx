@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { useEffect,useState } from "react";
 import TopNavBar from "../components/TopNavBar";
 import LowerNavBar from "../components/LowerNavBar";
+import EnquiryResults from "../components/EnquiryResults";
 
 
 const SingleEnquiryPage: React.FC = () => {
@@ -115,6 +116,7 @@ const SingleEnquiryPage: React.FC = () => {
       
       </div>}
       {/* Add more content, components, or UI elements as needed */}
+      <EnquiryResults CurrentEnquiry={enquiry} />
     </div>
   );
 };

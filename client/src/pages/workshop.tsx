@@ -9,11 +9,38 @@ const Workshop: React.FC = () => {
 
 const [enquiry, setEnquiry] = useState<Enquiry | null>(null);
 
-    useEffect(() => {
+    // useEffect(() => {
+    //   const fetchData = async () => {
+    //     try {
+    //       const response = await fetch(
+    //         `${process.env.REACT_APP_SERVER_URL}/venue/styles`,
+    //         {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify({ 'style':'style_traditional' }),
+    //           }
+    //       );
+    //       if (response.status === 200) {
+    //         const result = await response.json();
+    //         console.log(result)
+      
+    //       } else {
+    //         console.log("Fetch failed with status:", response.status);
+    //       }
+    //     } catch (err) {
+    //       console.error(err);
+    //     }
+    //   };
+  
+    //   // Call the async function
+    //   fetchData();
+    // }, []);
+
+        useEffect(() => {
       const fetchData = async () => {
         try {
           const response = await fetch(
-            `${process.env.REACT_APP_SERVER_URL}/venue/styles`,
+            `${process.env.REACT_APP_SERVER_URL}/venue/filter`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

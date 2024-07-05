@@ -38,7 +38,20 @@ const venueController = {
   FilterByEnquiry: async (req, res) => {
     console.log('Backend Venue Controller - FilterByEnquiry Reached')
     try {
-      const result = await pool.query(`SELECT * FROM venues`);
+      const result = await pool.query(`
+        SELECT *
+        FROM venue
+        WHERE (
+          ($1 = 'wedding' AND accepts_wedding = TRUE) OR
+          ($1 = 'corporate' AND accepts_corporate = TRUE) OR
+          ($1 = 'birthday' AND accepts_birthday = TRUE)
+
+);`);
+      
+      
+      
+      
+      
       res.json(result.rows);
     } catch (error) {
       console.error('Error executing query', error);
