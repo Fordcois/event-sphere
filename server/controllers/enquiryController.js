@@ -32,7 +32,7 @@ const EnquiryController = {
       const result = await pool.query(
         `SELECT enquiries.*, users.first_name, users.last_name, users.email
          FROM enquiries
-         INNER JOIN users ON enquiries.userid = users.user_id
+         INNER JOIN users ON enquiries.user_id = users.user_id
          WHERE enquiries.event_id = $1;`, [id]
       );
       

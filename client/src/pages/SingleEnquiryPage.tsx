@@ -13,26 +13,26 @@ const SingleEnquiryPage: React.FC = () => {
     first_name:string;
     last_name:string;
     email:string;
-    eventName: string;
-    eventType: string;
-    corporateEvent:boolean;
-    eventDate:Date;
-    startTime:string;
-    endTime:string;
+    event_name: string;
+    event_type: string;
+    corporate_event:boolean;
+    event_date:Date;
+    start_time:string;
+    end_time:string;
     flexible:boolean;
-    SeatingArrangment:string;
-    ExpectedGuests:number;
-    styleCasual:boolean;
-    styleFormal:boolean;
-    styleIndustrial:boolean; 
-    styleLively:boolean;
-    styleLuxury:boolean;
-    styleModern:boolean; 
-    styleProfessional:boolean; 
-    styleQuiet:boolean; 
-    styleSocial:boolean; 
-    styleTraditional:boolean; 
-    Notes:string
+    seating_arrangement:string;
+    expected_guests:number;
+    style_casual:boolean;
+    style_formal:boolean;
+    style_industrial:boolean; 
+    style_lively:boolean;
+    style_luxury:boolean;
+    style_modern:boolean; 
+    style_professional:boolean; 
+    style_quiet:boolean; 
+    style_social:boolean; 
+    style_traditional:boolean; 
+    notes:string
   }
 
   const params= useParams<{ enquiry_id: string }>()
@@ -79,38 +79,38 @@ const SingleEnquiryPage: React.FC = () => {
         <b>Email: </b>{enquiry.email && enquiry.email}
         <br/>
 
-        <b>Event Name: </b>{enquiry.eventName && enquiry.eventName} 
+        <b>Event Name: </b>{enquiry.event_name && enquiry.event_name} 
         <br/>
-        <b>Event Type: </b>{enquiry.eventType && enquiry.eventType} 
+        <b>Event Type: </b>{enquiry.event_type && enquiry.event_type} 
         <br/>
-        <b>Corporate Event:</b>{enquiry.corporateEvent.toString()} 
+        <b>Corporate Event:</b>{enquiry.corporate_event.toString()} 
         <br/>
-        <b>Date:</b>{enquiry.eventDate && enquiry.eventDate.toString()} 
+        <b>Date:</b>{enquiry.event_date && enquiry.event_date.toString()} 
         <br/>
-        <b>Start Time:</b>{enquiry.startTime && enquiry.startTime} 
+        <b>Start Time:</b>{enquiry.start_time && enquiry.start_time} 
         <br/>
-        <b>End Time:</b>{enquiry.endTime && enquiry.endTime}
+        <b>End Time:</b>{enquiry.end_time && enquiry.end_time}
         <br/>
         <b>Flexible on Date?:</b>{enquiry.flexible.toString()} 
         <br/>
-        <b>Seating:</b>{enquiry.SeatingArrangment && enquiry.SeatingArrangment}
+        <b>Seating:</b>{enquiry.seating_arrangement && enquiry.seating_arrangement}
         <br/>
-        <b>Expected Guests:</b>{enquiry.ExpectedGuests && enquiry.ExpectedGuests}
+        <b>Expected Guests:</b>{enquiry.expected_guests && enquiry.expected_guests}
         <br/>
         <b>Styles:</b><br/>
-        {enquiry.styleCasual && 'Causal '}
-        {enquiry.styleFormal && 'Formal '}
-        {enquiry.styleIndustrial && 'Industrial '}
-        {enquiry.styleLively && 'Lively '}
-        {enquiry.styleLuxury && 'Luxury '}
-        {enquiry.styleModern && 'Modern '}
-        {enquiry.styleProfessional && 'Professional '}
-        {enquiry.styleQuiet && 'Quiet '}
-        {enquiry.styleSocial && 'Social '}
-        {enquiry.styleTraditional && 'Traditional '}
+        {enquiry.style_casual && 'Causal '}
+        {enquiry.style_formal && 'Formal '}
+        {enquiry.style_industrial && 'Industrial '}
+        {enquiry.style_lively && 'Lively '}
+        {enquiry.style_luxury && 'Luxury '}
+        {enquiry.style_modern && 'Modern '}
+        {enquiry.style_professional && 'Professional '}
+        {enquiry.style_quiet && 'Quiet '}
+        {enquiry.style_social && 'Social '}
+        {enquiry.style_traditional && 'Traditional '}
 
         <br/>
-        <b>Additional Note:</b><br/>{enquiry.Notes && enquiry.Notes}
+        <b>Additional Note:</b><br/>{enquiry.notes && enquiry.notes}
         
         
       
