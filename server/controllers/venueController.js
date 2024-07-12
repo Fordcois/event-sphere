@@ -3,6 +3,8 @@ const { v4: uuidv4 } = require("uuid");
 const jwt = require("jsonwebtoken"); 
 const bcrypt = require("bcrypt");
 
+// TODO - Remove password in returned Venues
+
 const venueController = {
   Create: async (req, res) => {
     console.log('Backend Venue Controller - Create Reached')
