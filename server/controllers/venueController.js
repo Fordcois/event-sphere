@@ -37,23 +37,39 @@ const venueController = {
   },
   FilterByEnquiry: async (req, res) => {
     console.log('Backend Venue Controller - FilterByEnquiry Reached');
-  
+
     const { event_type, expected_guests, style_casual, style_formal, style_industrial, style_luxury, style_lively, style_modern, style_professional, style_quiet, style_social, style_traditional } = req.body;
     try {
-      console.log('event Type:',event_type)
-      console.log('Expected Guests:',expected_guests)
       const result = await pool.query(`
         SELECT *
         FROM venues
         WHERE (
           (
-
-            $1 = 'Party' AND accepts_party = TRUE
+            ($1 = 'Wedding' AND accepts_wedding = TRUE) OR
+            ($1 = 'Party' AND accepts_party = TRUE) OR
+            ($1 = 'Networking' AND accepts_networking = TRUE) OR
+            ($1 = 'Meeting' AND accepts_meeting = TRUE) OR
+            ($1 = 'Dining' AND accepts_dining = TRUE) OR
+            ($1 = 'Conference' AND accepts_conference = TRUE) OR
+            ($1 = 'Other')
           )
           AND
           ($2 <= max_capacity)
+          AND
+          (
+            ($3 = TRUE AND style_casual = TRUE) OR
+            ($4 = TRUE AND style_formal = TRUE) OR
+            ($5 = TRUE AND style_industrial = TRUE) OR
+            ($6 = TRUE AND style_lively = TRUE) OR
+            ($7 = TRUE AND style_luxury = TRUE) OR
+            ($8 = TRUE AND style_modern = TRUE) OR
+            ($9 = TRUE AND style_professional = TRUE) OR
+            ($10 = TRUE AND style_quiet = TRUE) OR
+            ($11 = TRUE AND style_social = TRUE) OR
+            ($12 = TRUE AND style_traditional = TRUE)
+          )
         );
-      `, [event_type, expected_guests]);
+      `, [event_type, expected_guests, style_casual, style_formal, style_industrial, style_luxury, style_lively, style_modern, style_professional, style_quiet, style_social, style_traditional]);
 
       res.json(result.rows);
     } catch (error) {
@@ -64,35 +80,3 @@ const venueController = {
 };
 
 module.exports = venueController;
-
-// TODO - Resolve Filter by Enquiry:
-// const result = await pool.query(`
-//   SELECT *
-//   FROM venues
-//   WHERE (
-//     (
-//       ($1 = 'Wedding' AND accepts_wedding = TRUE) OR
-//       ($1 = 'Party' AND accepts_party = TRUE) OR
-//       ($1 = 'Networking' AND accepts_networking = TRUE) OR
-//       ($1 = 'Meeting' AND accepts_meeting = TRUE) OR
-//       ($1 = 'Dining' AND accepts_dining = TRUE) OR
-//       ($1 = 'Conference' AND accepts_conference = TRUE) OR
-//       ($1 = 'Other')
-//     )
-//     AND
-//     ($2 <= max_capacity)
-//     AND
-//     (
-//       ($3 = TRUE AND style_casual = TRUE) OR
-//       ($4 = TRUE AND style_formal = TRUE) OR
-//       ($5 = TRUE AND style_industrial = TRUE) OR
-//       ($6 = TRUE AND style_lively = TRUE) OR
-//       ($7 = TRUE AND style_luxury = TRUE) OR
-//       ($8 = TRUE AND style_modern = TRUE) OR
-//       ($9 = TRUE AND style_professional = TRUE) OR
-//       ($10 = TRUE AND style_quiet = TRUE) OR
-//       ($11 = TRUE AND style_social = TRUE) OR
-//       ($12 = TRUE AND style_traditional = TRUE)
-//     )
-//   );
-// `, [event_type, expected_guests, style_casual, style_formal, style_industrial, style_luxury, style_lively, style_modern, style_professional, style_quiet, style_social, style_traditional]);

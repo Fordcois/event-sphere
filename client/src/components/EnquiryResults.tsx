@@ -1,6 +1,8 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
+
 const EnquiryResults: React.FC = ({CurrentEnquiry}) => {
+  const [matchingVenues,setmatchingVenues] = useState(null)
 
 
   useEffect(() => {
@@ -29,7 +31,7 @@ const EnquiryResults: React.FC = ({CurrentEnquiry}) => {
         );
         if (response.status === 200) {
           const result = await response.json();
-          console.log(result)
+          setmatchingVenues(result)
         } else {
           console.log("Fetch failed with status:", response.status);
         }
@@ -44,27 +46,16 @@ const EnquiryResults: React.FC = ({CurrentEnquiry}) => {
 
 
 
-  
-  
-  
-  
-  // event_type,
-  // expected_guests,
-  // style_casual,
-  // style_formal,
-  // style_industrial,
-  // style_luxury,
-  // style_lively,
-  // style_modern,
-  // style_professional,
-  // style_quiet,
-  // style_social,
-  // style_traditional
-  
   return (
     <div style={{marginTop:'50px'}}>
-        Here are the results for your enquiry:<br/>
-        {CurrentEnquiry? CurrentEnquiry.event_name : 'No Enquiry Sent'}
+        You have {matchingVenues?.length ?? 0} {matchingVenues?.length === 1 ? "match" : "matches"}<br/>
+        
+        <ul>
+      {matchingVenues?.map((item, index) => (
+        <li key={index}>{item.venue_name}</li>
+      ))}
+    </ul>
+
 
 
 
