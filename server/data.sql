@@ -26,7 +26,7 @@ CREATE TABLE "enquiries" (
     "style_lively" bool,
     "style_quiet" bool,
     "style_professional" bool,
-    "Seating_arrangment" varchar,
+    "seating_arrangement" varchar,
     "notes" varchar,
     "user_id" varchar,
     "style_formal" bool,

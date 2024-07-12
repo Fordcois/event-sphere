@@ -10,7 +10,7 @@ const EnquiryController = {
     try {
         const newEnquiry = await pool.query(
             `INSERT INTO enquiries (
-            "Eventid","userid","eventName","eventType","corporateEvent","SeatingArrangment","ExpectedGuests","eventDate","startTime","endTime","flexible","styleCasual","styleModern","styleLuxury","styleTraditional","styleIndustrial","styleSocial","styleLively","styleQuiet","styleProfessional","styleFormal","Notes"
+            event_id,user_id,event_name,event_type,corporate_event,seating_arrangement,expected_guests,event_date,start_time,end_time,flexible,style_casual,style_modern,style_luxury,style_traditional,style_industrial,style_social,style_lively,style_quiet,style_professional,style_formal,notes
             ) VALUES (
             $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13,$14, $15, $16, $17, $18, $19, $20, $21, $22
             ) 
@@ -33,7 +33,7 @@ const EnquiryController = {
         `SELECT enquiries.*, users.first_name, users.last_name, users.email
          FROM enquiries
          INNER JOIN users ON enquiries.userid = users.user_id
-         WHERE enquiries."Eventid" = $1;`, [id]
+         WHERE enquiries.event_id = $1;`, [id]
       );
       
       res.json(result.rows);
@@ -50,7 +50,7 @@ FindAllByUserID: async(req,res) => {
       const result = await pool.query(
         `SELECT *
          FROM enquiries
-         WHERE userid = $1;`, [user_id]
+         WHERE user_id = $1;`, [user_id]
       );
 
       res.json(result.rows);
